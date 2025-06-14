@@ -6,6 +6,7 @@ import ErrorModal from "../../components/Modals/Status Modals/ErrorModal";
 import SuccessModal from "../../components/Modals/Status Modals/SuccessModal";
 import { addStudent } from "../../services/api/apiCalls/student/addStudent";
 import { SignUpUser } from "../../utils/constants";
+import Cliploader from "../../components/Loaders/Cliploader";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
@@ -274,14 +275,14 @@ const SignUp: React.FC = () => {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              disabled={!isFormValid}
+              disabled={!isFormValid || loading}
               className={`bg-blue-500 text-white py-2 px-4 rounded-xl cursor-pointer ${
                 !isFormValid
                   ? "opacity-50 cursor-not-allowed"
                   : "hover:bg-blue-600"
               }`}
             >
-              Sign Up
+              {loading? <Cliploader size={10} /> : "Sign up"}
             </button>
           </div>
         </form>

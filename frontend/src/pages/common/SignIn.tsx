@@ -8,6 +8,7 @@ import { useUser } from "../../context/UserContext";
 import { signin } from "../../services/api/apiCalls/common/signin";
 import { fetchuser } from "../../services/api/apiCalls/common/fetchUserDetails";
 import { SignInUser } from "../../utils/constants";
+import Cliploader from "../../components/Loaders/Cliploader";
 
 const SignIn: React.FC = () => {
   const { setUserDetails } = useUser();
@@ -249,14 +250,14 @@ const SignIn: React.FC = () => {
           <div className="flex justify-center items-center">
             <button
               type="submit"
-              disabled={!isFormValid}
+              disabled={!isFormValid || loading}
               className={`bg-blue-500 text-white py-2 px-4 rounded-xl cursor-pointer ${
                 !isFormValid
                   ? "opacity-50 cursor-not-allowed"
                   : "hover:bg-blue-600"
               }`}
             >
-              Login
+              {loading? <Cliploader size={10} /> : "Sign in"}
             </button>
           </div>
         </form>
