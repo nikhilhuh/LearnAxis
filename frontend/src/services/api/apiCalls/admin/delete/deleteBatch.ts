@@ -1,4 +1,4 @@
-import { Batch, User } from "../../../../utils/constants";
+import { Batch, User } from "../../../../../utils/constants";
 import { axiosInstance } from "../../../../axiosInstance";
 import { apiErrorHandler } from "../../../apiErrorHandling";
 

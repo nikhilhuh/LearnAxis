@@ -1,4 +1,4 @@
-import { Teacher, User } from "../../../../utils/constants";
+import { Teacher, User } from "../../../../../utils/constants";
 import { axiosInstance } from "../../../../axiosInstance";
 import { apiErrorHandler } from "../../../apiErrorHandling";
 

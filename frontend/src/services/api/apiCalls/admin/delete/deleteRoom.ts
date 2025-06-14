@@ -1,4 +1,4 @@
-import { Room, User } from "../../../../utils/constants";
+import { Room, User } from "../../../../../utils/constants";
 import { axiosInstance } from "../../../../axiosInstance";
 import { apiErrorHandler } from "../../../apiErrorHandling";
 
