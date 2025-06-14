@@ -129,7 +129,7 @@ const TeacherStudents: React.FC = () => {
                   student={student}
                   onClick={() =>
                     navigate(
-                      `/admin/students/${encodeURIComponent(student.user_id)}`,
+                      `/teacher/students/${encodeURIComponent(student.user_id)}`,
                       {
                         state: { student },
                       }
