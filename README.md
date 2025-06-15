@@ -118,7 +118,7 @@ npm run dev
 Create a `.env` file inside the `backend/` directory:
 
 ```env
-PORT=5000
+PORT=4000
 MONGO_URI=your_mongodb_connection_string
 FRONTEND_URL=http://localhost:5173
 ```
