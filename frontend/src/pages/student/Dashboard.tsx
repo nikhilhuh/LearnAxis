@@ -149,52 +149,73 @@ const StudentDashboard: React.FC = () => {
             {/* Bar Chart */}
             <div className="p-4 tablet:p-6 rounded-2xl shadow border">
               <h1 className="mb-2 font-semibold">Batches Per Day</h1>
-              <ResponsiveContainer width="100%" height={350}>
-                <BarChart data={daywiseBatchData}>
-                  <XAxis dataKey="day" />
-                  <YAxis allowDecimals={false} />
-                  <Tooltip />
-                  <Bar dataKey="count" fill="#6366f1" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              {daywiseBatchData.every((item: any) => item.count === 0) ? (
+                <div className="flex flex-col h-full justify-center items-center gap-2">
+                  <img
+                    src={NoDataImg}
+                    alt="No Data"
+                    className="h-[20vh] w-auto"
+                  />
+                  <p className="text-gray-400">No batches assigned yet.</p>
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={350}>
+                  <BarChart data={daywiseBatchData}>
+                    <XAxis dataKey="day" />
+                    <YAxis allowDecimals={false} />
+                    <Tooltip />
+                    <Bar dataKey="count" fill="#6366f1" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
             </div>
 
             {/* Pie Chart */}
             <div className="p-4 tablet:p-6 rounded-2xl shadow border">
               <h1 className="mb-2 font-semibold">Your Courses</h1>
-              <ResponsiveContainer width="100%" height={350}>
-                <PieChart>
-                  <Pie
-                    data={pieData}
-                    dataKey="value"
-                    nameKey="name"
-                    outerRadius={80}
-                    label
-                  >
-                    {pieData.map((_, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip />
-                  <Legend
-                    layout={isSmallScreen ? "horizontal" : "vertical"}
-                    verticalAlign="bottom"
-                    align="right"
-                    wrapperStyle={{ paddingTop: isSmallScreen ? 20 : 0 }}
+              {subjectStats.totalSubjects === 0 ? (
+                <div className="flex flex-col h-full justify-center items-center gap-2">
+                  <img
+                    src={NoDataImg}
+                    alt="No Data"
+                    className="h-[20vh] w-auto"
                   />
-                </PieChart>
-              </ResponsiveContainer>
+                  <p className="text-gray-400">No subjects available yet.</p>
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={350}>
+                  <PieChart>
+                    <Pie
+                      data={pieData}
+                      dataKey="value"
+                      nameKey="name"
+                      outerRadius={80}
+                      label
+                    >
+                      {pieData.map((_, index) => (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend
+                      layout={isSmallScreen ? "horizontal" : "vertical"}
+                      verticalAlign="bottom"
+                      align="right"
+                      wrapperStyle={{ paddingTop: isSmallScreen ? 20 : 0 }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              )}
             </div>
           </div>
 
           {/* Attendance Pie Charts */}
           <div className="p-4 tablet:p-6 rounded-2xl shadow border">
             <h1 className="mb-4 font-semibold">Your Attendance</h1>
-            {attendanceStats &&
-            Object.keys(attendanceStats).length > 0 ? (
+            {attendanceStats && Object.keys(attendanceStats).length > 0 ? (
               <div className="grid grid-cols-1 tablet:grid-cols-2 gap-6">
                 {Object.entries(attendanceStats).map(
                   ([batchName, percentage], index) => {

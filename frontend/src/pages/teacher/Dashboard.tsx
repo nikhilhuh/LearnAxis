@@ -95,7 +95,6 @@ const TeacherDashboard: React.FC = () => {
       icon: <CalendarClock className="text-blue-600" />,
     },
   ];
-  
   const currentDate = new Date();
   const today = currentDate.toLocaleDateString("en-IN", { weekday: "long" });
   const currentTime = currentDate.toTimeString().slice(0, 5); // "HH:MM"
@@ -147,23 +146,35 @@ const TeacherDashboard: React.FC = () => {
           {/* Charts and Lists */}
           <div className="grid grid-cols-1 laptop-sm:grid-cols-2 gap-2 laptop-sm:gap-4">
             {/* Bar Chart for Days */}
-            <div className="p-4 tablet:p-6 rounded-2xl shadow border">
+            <div className="p-4 tablet:p-6 rounded-2xl shadow border h-auto">
               <h1 className="mb-2 font-semibold">Batches Per Day</h1>
-              <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={daywiseBatchData}>
-                  <XAxis dataKey="day" />
-                  <YAxis allowDecimals={false} />
-                  <Tooltip />
-                  <Bar dataKey="count" fill="#4f46e5" radius={[8, 8, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+
+              {daywiseBatchData.every((item: any) => item.count === 0) ? (
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <img
+                    src={NoDataImg}
+                    alt="No Data"
+                    className="h-[20vh] w-auto"
+                  />
+                  <p className="text-gray-400">No batches assigned yet.</p>
+                </div>
+              ) : (
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={daywiseBatchData}>
+                    <XAxis dataKey="day" />
+                    <YAxis allowDecimals={false} />
+                    <Tooltip />
+                    <Bar dataKey="count" fill="#4f46e5" radius={[8, 8, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
             </div>
 
             {/* Pie Chart for Students per Batch */}
             <div className="p-4 tablet:p-6 rounded-2xl shadow border">
               <h1 className="mb-2 font-semibold">Students Per Batch</h1>
               {studentCountPerBatch?.length === 0 ? (
-                <div className="flex flex-col h-full justify-center items-center gap-2">
+                <div className="flex flex-col justify-center items-center gap-2">
                   <img
                     src={NoDataImg}
                     alt="No Data"

@@ -32,11 +32,14 @@ import Error404 from "../pages/common/Error404";
 import SignIn from "../pages/common/SignIn";
 import SignUp from "../pages/common/SignUp";
 
+// redirecting 
+import RedirectToDashboard from "./RedirectToDashboard";
+
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
       {/* Common */}
-      <Route path="/" element={<SignIn />} />
+      <Route path="/" element={<RedirectToDashboard />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/unauthorized" element={<Unauthorized />} />
