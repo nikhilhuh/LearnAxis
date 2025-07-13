@@ -59,7 +59,7 @@ const Navbar: React.FC = () => {
       : studentMenuItems;
 
   return (
-    <div className="w-full bg-[var(--color-primary)] py-2 px-4 relative h-[8vh]">
+    <div className="w-full bg-[var(--color-primary)] py-2 px-4 relative h-[8svh]">
       <div className="flex w-full items-center justify-between text-[2.5rem]">
         <img src={LogoImg} alt="Logo" className="h-[5vh]" />
         <div
@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
       </div>
 
       <div
-        className={`absolute top-full left-0 w-full h-[92vh] bg-[var(--color-primary)] z-50 shadow-md transform transition-transform duration-300 ${
+        className={`absolute top-full left-0 w-full h-[92svh] bg-[var(--color-primary)] z-50 shadow-md transform transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
